@@ -1,7 +1,7 @@
 const expect = require('chai').expect
 const Student = require('../src').Student
 
-xdescribe('Student', function () {
+describe('Student', function () {
   before(function () {
     this.properties = [ 'Shelly Vasquez', 44 ]
   })
@@ -58,8 +58,9 @@ xdescribe('Student', function () {
 
       const homework = { title: 'Crushing Candy Code', skillLevel: 38 }
       student.doHomework(homework)
+      const homeworkTest = { title: 'Crushing Candy Code', skillLevel: 38, completed: true}
 
-      expect(homework.completed).to.be.true
+      expect(student.assignments).to.include(homeworkTest)
     })
 
     it('marks homework as incomplete (i.e. `complete: false`) if the skillLevel is too high', function () {
@@ -67,8 +68,9 @@ xdescribe('Student', function () {
 
       const homework = { title: 'OOP Classroom', skillLevel: 47 }
       student.doHomework(homework)
+      const homeworkTest = { title: 'OOP Classroom', skillLevel: 47, completed: false }
 
-      expect(homework.completed).to.be.false
+      expect(student.assignments).to.include(homeworkTest)
     })
 
     it('adds the homework to the `assignments` array whether or not it is completed', function () {
@@ -76,8 +78,8 @@ xdescribe('Student', function () {
 
       const homework = { title: 'Crushing Candy Code', skillLevel: 38 }
       student.doHomework(homework)
-
-      expect(student.assignments).to.include(homework)
+      const homeworkTest = { title: 'Crushing Candy Code', skillLevel: 38, completed: true }
+      expect(student.assignments).to.include(homeworkTest)
     })
 
     it('does not add the homework to the `assignments` array if it does not have a `skillLevel`', function () {
@@ -112,8 +114,9 @@ xdescribe('Student', function () {
 
       const homework = { title: 'OOP Classroom', skillLevel: 47 }
       student.doHomework(homework)
+      const homeworkTest = { title: 'OOP Classroom', skillLevel: 47, completed: false}
 
-      expect(student.assignments).to.include(homework)
+      expect(student.assignments).to.include(homeworkTest)
 
       student.study().study().study().study()
       student.doHomework()
@@ -126,8 +129,9 @@ xdescribe('Student', function () {
 
       const homework = { title: 'Capstone Project', skillLevel: 90 }
       student.doHomework(homework)
+      const homeworkTest = { title: 'Capstone Project', skillLevel: 90, completed: false }
 
-      expect(student.assignments).to.include(homework)
+      expect(student.assignments).to.include(homeworkTest)
 
       student.study().study().study().study()
       student.doHomework()
